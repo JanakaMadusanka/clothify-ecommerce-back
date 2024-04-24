@@ -3,10 +3,7 @@ package org.example.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.dto.User;
 import org.example.service.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -16,5 +13,13 @@ public class UserController {
     @PostMapping("/register")
     public void registerUser(@RequestBody User user){
         service.addUser(user);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteUser(@PathVariable Long id) {
+        if (service.deleteUser(id)) {
+            return "Deleted";
+        }
+        return "User doesn't exist";
     }
 }
