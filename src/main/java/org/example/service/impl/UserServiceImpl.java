@@ -8,6 +8,9 @@ import org.example.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
@@ -25,6 +28,20 @@ public class UserServiceImpl implements UserService {
         repository.save(entity);
     }
 
+    @Override
+    public boolean updateUser(User user) {
+        UserEntity existingUser = repository.findById(user.getId()).orElse(null);
+        if(existingUser !=null){
+            existingUser.setRole(user.getRole());
+            existingUser.setName(user.getName());
+            existingUser.setEmail(user.getEmail());
+            existingUser.setPassword(user.getPassword());
+            repository.save(existingUser);
+            return true;
+        }else{
+            return false;
+        }
+    }
     @Override
     public boolean deleteUser(Long id) {
         if(repository.existsById(id)){

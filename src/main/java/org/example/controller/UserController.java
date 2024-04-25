@@ -15,6 +15,15 @@ public class UserController {
         service.addUser(user);
     }
 
+    @PutMapping("/update/{id}")
+    public String updateUser(@PathVariable Long id, @RequestBody User user){
+        user.setId(id);
+        if(service.updateUser(user)){
+            return "Updated";
+        }
+        return "User doesn't exist";
+    }
+
     @DeleteMapping("/delete/{id}")
     public String deleteUser(@PathVariable Long id) {
         if (service.deleteUser(id)) {
