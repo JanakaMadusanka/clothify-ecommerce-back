@@ -57,7 +57,11 @@ public class UserServiceImpl implements UserService {
         for(UserEntity entity : entityList){
             userList.add(mapper.map(entity,User.class));
         }
-
         return userList;
+    }
+
+    @Override
+    public User searchUserById(Long id) {
+        return mapper.map(repository.findById(id),User.class);
     }
 }

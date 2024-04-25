@@ -38,8 +38,8 @@ public class UserController {
         return service.getAllUser();
     }
 
-//    @GetMapping("/search/{id}")
-//    public User searchUser(@PathVariable Long id){
-//        return user;
-//    }
+    @GetMapping("/search/{id}")
+    public User searchUser(@PathVariable Long id){
+        return service.searchUserById(id);
+    }
 }
