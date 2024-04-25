@@ -33,6 +33,7 @@ public class UserController {
         }
         return "User doesn't exist";
     }
+    
     @GetMapping("/get/all")
     public List<User> getAllUser(){
         return service.getAllUser();
