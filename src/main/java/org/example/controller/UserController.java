@@ -5,6 +5,8 @@ import org.example.dto.User;
 import org.example.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
@@ -31,4 +33,13 @@ public class UserController {
         }
         return "User doesn't exist";
     }
+    @GetMapping("/get/all")
+    public List<User> getAllUser(){
+        return service.getAllUser();
+    }
+
+//    @GetMapping("/search/{id}")
+//    public User searchUser(@PathVariable Long id){
+//        return user;
+//    }
 }
