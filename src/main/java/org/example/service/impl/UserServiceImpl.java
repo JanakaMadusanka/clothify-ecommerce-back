@@ -14,12 +14,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     final UserRepository repository;
-    ModelMapper mapper;
-
-    @Bean
-    public void setup(){
-        this.mapper = new ModelMapper();
-    }
+    final ModelMapper mapper;
 
     @Override
     public void addUser(User user) {
