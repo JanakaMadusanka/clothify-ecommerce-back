@@ -63,4 +63,8 @@ public class UserServiceImpl implements UserService {
     public User searchUserById(Long id) {
         return mapper.map(repository.findById(id),User.class);
     }
+
+    public User searchUserByName(String name) {
+        return mapper.map(repository.findByName(name),User.class);
+    }
 }

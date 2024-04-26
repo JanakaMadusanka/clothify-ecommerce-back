@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.example.dto.User;
 import org.example.service.UserService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -33,14 +32,19 @@ public class UserController {
         }
         return "User doesn't exist";
     }
-    
+
     @GetMapping("/get/all")
     public List<User> getAllUser(){
         return service.getAllUser();
     }
 
-    @GetMapping("/search/{id}")
-    public User searchUser(@PathVariable Long id){
+    @GetMapping("/search-by-id/{id}")
+    public User searchUserById(@PathVariable Long id){
         return service.searchUserById(id);
+    }
+
+    @GetMapping("/search-by-name/{name}")
+    public User searchUserByName(@PathVariable String name){
+        return service.searchUserByName(name);
     }
 }
